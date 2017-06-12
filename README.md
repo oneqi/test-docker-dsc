@@ -101,12 +101,12 @@ cd admin
 psedit CreatePullServer.ps1
 ```
 
-Run the CreatePullServer.ps1 to creat a localhost.MOF file in c:\admin\CreatePullServer  
+Run the CreatePullServer.ps1 to create a localhost.MOF file in c:\admin\CreatePullServer  
 `.\CreatePullServer.ps1`
 
 Run the following command to configure our Pull Server  
-`Start-DSCConfiguration -Path "C:\admin\CreatePullServer" -Wait -Verbose`
-(ignore the errors)  
+`Start-DSCConfiguration -Path "C:\admin\CreatePullServer" -Wait -Verbose`  
+(ignore the errors .. if using docker)   
 
 We need to verify that everything went well  
 To check if the DSC features are installed    
@@ -115,7 +115,7 @@ Get-WindowsFeature -Name DSC-Service
 Get-Website | ft -Autosize
 ipconfig
 ```
-(you can open up a browser on the client and try ... http://<IP address of iis01>:8080/PSDSCPullServer.svc/ .. or use hostfile for DNS)  
+(you can open up a browser on the client and try ... http://"IP address of iis01":8080/PSDSCPullServer.svc/ .. or use hostfile for DNS)  
 
 ### Configure the LCM agent for the Client
 
