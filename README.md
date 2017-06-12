@@ -1,7 +1,7 @@
-#test-docker-dsc
+# test-docker-dsc
 docker for windows and DSC
 
-##Environment
+## Environment
 
 This test lab uses Docker for Windows   
 However, you can use the scripts in other test labs where you have 2 VMs / workstations  
@@ -14,7 +14,7 @@ The image use will be microsoft/iis:latest and it will be labelled (called) iis0
 The bridged network will allow you to use the same network your client is on, i.e. no nat is involved and no port mappings  
 On your workstation, place all scripts under c:\admin as we willuse this folder to share with iis01 container  
 
-##Client
+## Client
 
 install latest ps DSC development tools  
 ```
