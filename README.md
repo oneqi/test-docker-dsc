@@ -21,7 +21,7 @@ docker-compose.yml
 
 ## Client
 
-install the latest powershell DSC development tools  
+Install the latest powershell DSC development tools  
 ```
 Register-PSRepository -Name DockerPS-Dev -SourceLocation https://ci.appveyor.com/nuget/docker-powershell-dev
 Install-Module Docker -Repository DockerPS-Dev
@@ -51,9 +51,10 @@ Now connect using the 'enter-pssession' on client (using ISE !) .. so that we ca
 You may need to resart ISE (as administrator !)  
 `Enter-PSSession -ContainerId (Get-Container dsc_iis01_1).ID -RunAsAdministrator`
 
+
 ## iis01
 
-Check hostname and IOP address of iis01 ( to make sure it is in the same network as client)    
+Check hostname and IP address of iis01 ( to make sure it is in the same network as client)    
 ```
 hostname
 ipconfig
@@ -67,7 +68,7 @@ Install-WindowsFeature DSC-Service
 winrm qc
 ```
 
-We need tocreate an 'admin' folder    
+We need to create an 'admin' folder    
 ```
 cd \
 mkdir admin
@@ -81,18 +82,18 @@ Expand-Archive -LiteralPath "C:\admin\xyz.zip" -DestinationPath "C:\admin\"
 Copy-Item "C:\admin\All Resources\xPSDesiredStateConfiguration" -Destination "C:\Program Files\WindowsPowerShell\Modules" -recurse
 ```
 
-We need to heck 'DSCResources' on iis01 as we require 'xDscWebService' which is in 'xPSDesiredStateConfiguration'  
+We need to check 'DSCResources' on iis01 as we require 'xDscWebService' which is in 'xPSDesiredStateConfiguration'  
 We need xDSCWebService for the CreatePullServer.ps1 script to work  
 ```
 Get-DSCResource
 Get-DscResource xDSCWebService | fl *
 ```
 
-Now reate an empty .ps1 file  
+Now create an empty .ps1 file  
 `New-Item c:\admin\CreatePullServer.ps1 -type file`
 
-Copy and paste contents of my CreatePullServer.ps1 into this file and save 
-Paste it onto the ISE which should indicate remote file and save !   
+Copy and paste contents of my CreatePullServer.ps1 into this file and save   
+Paste it onto the ISE which should indicate it is a 'remote file' and save !  
 ```
 cd\
 cd admin
@@ -157,7 +158,7 @@ Get-DscLocalConfigurationManager -CimSession $session
 
 ### DSC node configuration for the Client
 
-Now to deploy a dsc config to the client  
+Now to deploy a DSC config to the client  
 Create a file AudioServiceConfig.ps1 in c:\admin  
 ```
 cd\
@@ -187,16 +188,16 @@ cd admin\AudioServiceConfig
 Rename-Item .\"your client hostname".mof "$guidClient.mof"
 ```
 
-This will generate a checksum .. so you will now have 2 .mof files for the client  
+This will generate a checksum .. so you will now have two .MOF files for the client  
 ``` 
 cd\
 cd admin\AudioServiceConfig
 New-DSCChecksum *
 ```
 
-Now we need to move both .mof files into the correct folder so that the   
-audio settings of our client will become 'automatic' ...   
-this will happen approx 15 minutes after the transfer  
+Now we need to move both .MOF files into the correct folder so that the   
+audio settings of our client will be set from 'manual' to 'automatic'     
+This will happen approx 15 minutes after the transfer   
 ```
 $destination = 'C:\Program Files\WindowsPowerShell\DscService\Configuration'
 Copy 'C:\admin\AudioServiceConfig\*.mof*' -Destination $destination
