@@ -1,0 +1,13 @@
+version: '3'
+services:
+    iis01:
+        image: microsoft/iis
+        dns: 192.168.0.11
+        hostname: iis01
+        ports:
+            - "8080"
+            - "9080"
+networks:
+    default:
+        external:
+            name: bridged
