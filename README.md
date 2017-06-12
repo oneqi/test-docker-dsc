@@ -4,11 +4,11 @@ docker for windows and DSC
 ## Environment
 
 This test lab uses Docker for Windows   
-However, you can use the scripts in other test labs where you have 2 VMs / workstations    
-iis01  
-client  
+However, you can use the scripts in other test labs where you have 2 VMs / workstations;     
+* iis01  
+* client  
 Where iis01 is the DSC pull server (using basic HTTP) and your workstation is the client   
-(both do NOT have to be joined to the same domain)    
+(They do NOT have to be joined to the same domain)    
 
 We are using your workstation as the 'client' and a bridged network to communicate with the microsoft docker container.  
 The image used will be "microsoft/iis:latest" and it will be labelled 'iis01'    
@@ -39,6 +39,7 @@ If missing, create bridge network using transparent driver
 
 Create running container with preconfigured docker-compose file  
 Place docker-compose file under c:\dsc  
+(Change the DNS settings in the yml file .. or remove the 'dns: 192.168.0.11' entry)  
 ```
 cd\
 cd dsc
