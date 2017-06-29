@@ -21,7 +21,7 @@ docker-compose.yml
 
 ## Client
 
-Install the latest powershell DSC development tools  
+Install the latest powershell Docker development tools    
 ```
 Register-PSRepository -Name DockerPS-Dev -SourceLocation https://ci.appveyor.com/nuget/docker-powershell-dev
 Install-Module Docker -Repository DockerPS-Dev
@@ -48,7 +48,7 @@ docker-compose up -d
 The name of container will be dsc_iis01_1    
 
 Create a powershell session to dsc_iis01_1 using the installed dev ps tools  
-Now connect using the 'enter-pssession' on client (using ISE !) .. so that we can use psedit !  
+Now connect using the 'enter-pssession' on client ... using ISE ! .. (so that we can use psedit !)    
 You may need to resart ISE (as administrator !)  
 `Enter-PSSession -ContainerId (Get-Container dsc_iis01_1).ID -RunAsAdministrator`
 
